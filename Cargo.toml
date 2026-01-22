@@ -1,15 +1,26 @@
 [package]
 name = "onnx-pb"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Łukasz Kurowski <crackcomm@gmail.com>", "Brian Macy"]
-edition = "2021"
+edition = "2024"
+rust-version = "1.85"
 license = "MIT"
-description = "ONNX protocol buffers messages."
+description = "ONNX protocol buffer bindings for Rust"
 homepage = "https://github.com/brianmacy/onnx-pb-rs"
 repository = "https://github.com/brianmacy/onnx-pb-rs.git"
+documentation = "https://brianmacy.github.io/onnx-pb-rs"
+readme = "README.md"
+keywords = ["onnx", "protobuf", "machine-learning", "neural-network"]
+categories = ["encoding", "science"]
 build = "build.rs"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+include = [
+    "src/**/*",
+    "build.rs",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE",
+    "third_party/onnx/onnx/*.proto3",
+]
 
 [dependencies]
 prost = "0.13"
@@ -17,3 +28,6 @@ bytes = "1"
 
 [build-dependencies]
 prost-build = "0.13"
+
+[dev-dependencies]
+tempfile = "3"
