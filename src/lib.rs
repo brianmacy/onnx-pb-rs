@@ -4,7 +4,12 @@ mod util;
 pub use self::attrs::*;
 pub use self::util::*;
 
-include!(concat!(env!("OUT_DIR"), "/onnx.rs"));
+// Allow doc formatting issues in generated protobuf code
+#[allow(clippy::doc_overindented_list_items)]
+mod onnx_proto {
+    include!(concat!(env!("OUT_DIR"), "/onnx.rs"));
+}
+pub use onnx_proto::*;
 
 use self::{
     tensor_proto::DataType,

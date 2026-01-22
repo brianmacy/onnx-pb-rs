@@ -21,14 +21,14 @@ pub enum Error {
 
 /// Opens model from a file.
 pub fn open_model<P: AsRef<Path>>(path: P) -> Result<ModelProto, Error> {
-    let body = std::fs::read(path).map_err(|e| Error::Io(e))?;
-    ModelProto::decode(body.as_slice()).map_err(|e| Error::Decode(e))
+    let body = std::fs::read(path).map_err(Error::Io)?;
+    ModelProto::decode(body.as_slice()).map_err(Error::Decode)
 }
 
 /// Saves model to a file.
 pub fn save_model<P: AsRef<Path>>(path: P, model: &ModelProto) -> Result<(), Error> {
     let mut body = Vec::new();
-    model.encode(&mut body).map_err(|e| Error::Encode(e))?;
-    std::fs::write(path, body).map_err(|e| Error::Io(e))?;
+    model.encode(&mut body).map_err(Error::Encode)?;
+    std::fs::write(path, body).map_err(Error::Io)?;
     Ok(())
 }
